@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+pillow
+torch
+open_clip
+transformers
