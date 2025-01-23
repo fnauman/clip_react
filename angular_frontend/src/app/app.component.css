@@ -1,0 +1,119 @@
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.upload-container {
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+  transition: border-color 0.3s ease;
+}
+
+.upload-container:hover {
+  border-color: #4CAF50;
+}
+
+.upload-area {
+  cursor: pointer;
+  text-align: center;
+}
+
+.upload-content {
+  padding: 40px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.upload-content svg {
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.upload-hint {
+  color: #666;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 300px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.analyze-button {
+  display: block;
+  width: 200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.analyze-button:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+.analyze-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.results {
+  margin-top: 40px;
+}
+
+.color-result {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.color-bar {
+  height: 24px;
+  background-color: #eee;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.color-fill {
+  height: 100%;
+  background-color: #4CAF50;
+  transition: width 0.5s ease-out;
+}
+
+.color-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.color-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.color-percentage {
+  color: #666;
+}
