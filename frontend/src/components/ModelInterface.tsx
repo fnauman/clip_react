@@ -1,11 +1,38 @@
 import React, { useState } from 'react';
 
-// Define types for our state and API responses
+/**
+ * Interface defining the structure of the API response
+ * @interface ResultType
+ * @property {number[]} probabilities - Array of probability scores for each label
+ * @property {string[]} labels - Array of corresponding color labels
+ */
 interface ResultType {
     probabilities: number[];
     labels: string[];
 }
 
+/**
+ * ModelInterface Component
+ * 
+ * This component provides a user interface for uploading and analyzing images using a CLIP model.
+ * It allows users to:
+ * - Upload an image file
+ * - See a preview of the uploaded image
+ * - Submit the image for analysis
+ * - View color probability results
+ * 
+ * The component uses the following technologies:
+ * - React for UI components
+ * - Tailwind CSS for styling
+ * - shadcn/ui for UI components
+ * - TypeScript for type safety
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * <ModelInterface />
+ * ```
+ */
 const ModelInterface = () => {
     // State management
     const [file, setFile] = useState<File | null>(null);
@@ -17,7 +44,14 @@ const ModelInterface = () => {
     // Predefined color list
     const colorList = ["green", "blue", "gray", "red", "pink", "yellow", "black", "multicolor", "white"];
 
-    // Handle file upload
+    /**
+     * Handles file upload event
+     * @param {React.ChangeEvent<HTMLInputElement>} event - The file input change event
+     * @description
+     * - Validates and sets the selected file
+     * - Creates a preview URL for the image
+     * - Cleans up previous preview URL to prevent memory leaks
+     */
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {
             const selectedFile = event.target.files[0];
@@ -35,7 +69,16 @@ const ModelInterface = () => {
         }
     };
 
-    // Handle form submission
+    /**
+     * Handles form submission and image analysis
+     * @param {React.FormEvent} event - The form submission event
+     * @description
+     * - Prevents default form submission
+     * - Creates FormData with the file and color list
+     * - Sends request to backend API
+     * - Updates UI with results or error message
+     * @async
+     */
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         if (!file) return;
