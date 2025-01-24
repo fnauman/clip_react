@@ -2,6 +2,20 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
 
+## Installation
+
+Install angular:
+
+```bash
+npm install -g @angular/cli
+```
+
+Create a new Angular project:
+
+```bash
+ng new angular_frontend
+```
+
 ## Development server
 
 To start a local development server, run:
