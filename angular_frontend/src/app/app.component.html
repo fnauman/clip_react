@@ -188,6 +188,11 @@
     margin-bottom: 20px;
   }
 
+  .upload-container.has-image {
+    border: none;
+    padding: 0;
+  }
+
   .upload-area {
     position: relative;
   }
@@ -209,10 +214,13 @@
     color: #666;
   }
 
+  .preview-container {
+    margin-top: 20px;
+  }
+
   .preview-image {
     max-width: 100%;
     height: auto;
-    margin-top: 20px;
   }
 
   .analyze-button {
@@ -272,6 +280,7 @@
     <h1>Color Analysis Model</h1>
     
     <div class="upload-container" 
+         [class.has-image]="selectedImage"
          (dragover)="onDragOver($event)" 
          (dragleave)="onDragLeave($event)"
          (drop)="onDrop($event)">
@@ -283,7 +292,18 @@
                accept="image/png,image/jpeg,image/gif"
                style="display: none">
         
-        <div class="upload-content" (click)="fileInput.click()">
+        <div class="preview-container" *ngIf="selectedImage">
+          <img [src]="selectedImage" class="preview-image" alt="Preview">
+          <div class="upload-content" (click)="fileInput.click()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="upload-content" *ngIf="!selectedImage" (click)="fileInput.click()">
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
             <polyline points="17 8 12 3 7 8"/>
@@ -292,8 +312,6 @@
           <p>Click to upload or drag and drop</p>
           <p class="upload-hint">PNG, JPG, GIF up to 10MB</p>
         </div>
-
-        <img *ngIf="selectedImage" [src]="selectedImage" class="preview-image">
       </div>
     </div>
 

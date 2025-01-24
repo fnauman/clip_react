@@ -13,7 +13,7 @@ app = FastAPI()
 # Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # React app default port; 3000 for npx create-react-app frontend, 5173 for npm create vite@latest frontend
+    allow_origins=["http://localhost:4200"],  # Angular app default port
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -86,4 +86,3 @@ async def compute_similarity(
         "probabilities": text_probs[0].tolist(),
         "labels": text_input_obj.text_list
     }
-

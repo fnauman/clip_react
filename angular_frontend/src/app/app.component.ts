@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';
 
 interface ColorResult {
-  color: string;
-  probability: number;
+  probabilities: number[];
+  labels: string[];
 }
 
 @Component({
@@ -19,7 +19,7 @@ export class AppComponent {
   selectedImage: string | null = null;
   imageFile: File | null = null;
   isAnalyzing: boolean = false;
-  colorResults: ColorResult[] = [];
+  colorResults: { color: string; probability: number }[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -75,14 +75,37 @@ export class AppComponent {
     this.isAnalyzing = true;
     const formData = new FormData();
     formData.append('file', this.imageFile);
+    
+    // Add the text input data
+    const textInput = {
+      // text_list: ["jeans", "t-shirt", "dress", "jacket", "shoes"]
+      text_list: ["green", "blue", "gray", "red", "pink", "yellow", "black", "multicolor", "white"]
+    };
+    formData.append('text_input', JSON.stringify(textInput));
 
     try {
-      const response = await this.http.post<ColorResult[]>('http://localhost:8000/analyze', formData).toPromise();
+      console.log('Sending request with data:', {
+        file: this.imageFile,
+        textInput
+      });
+      
+      const response = await this.http.post<ColorResult>('http://localhost:8000/compute_similarity/', formData).toPromise();
+      console.log('Received response:', response);
+      
       if (response) {
-        this.colorResults = response;
+        if (!response.labels || !response.probabilities) {
+          console.error('Invalid response format:', response);
+          throw new Error('Invalid response format from server');
+        }
+        
+        this.colorResults = response.labels.map((label, index) => ({
+          color: label,
+          probability: response.probabilities[index]
+        }));
+        console.log('Processed results:', this.colorResults);
       }
     } catch (error) {
-      console.error('Error analyzing image:', error);
+      console.error('Full error details:', error);
       alert('Error analyzing image. Please try again.');
     } finally {
       this.isAnalyzing = false;
