@@ -65,4 +65,9 @@ This guide assumes Ubuntu 24.04 OS and `nodejs` is not installed. If `nodejs` is
     uvicorn main:app --reload
     ```
 
+4. (Optional) Test the backend by executing the following command in the backend directory:
+    ```bash
+    curl -X POST http://localhost:8000/compute_similarity/   -F "file=@/home/Downloads/test.jpg"   -F 'text_input={"text_list": ["green", "blue", "gray", "red", "pink", "yellow", "black", "multicolor", "white"]}'
+    ```
+
 This will first download the model weights from Huggingface. The model weights will be cached in ~/.cache/huggingface/hub. The model weights will be downloaded only once.
