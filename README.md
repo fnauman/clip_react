@@ -38,6 +38,7 @@ This guide assumes Ubuntu 24.04 OS and `nodejs` is not installed. If `nodejs` is
 3. Install dependencies:
     ```bash
     npm install
+    npm install @types/react @types/react-dom react react-dom # avoid intellisense problems
     ```
 4. Install `shadcn/ui`:
     ```bash
