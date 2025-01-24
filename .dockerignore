@@ -1,0 +1,39 @@
+# Version control
+.git
+.gitignore
+
+# Dependencies
+node_modules
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+
+# Development
+*.log
+.DS_Store
+.idea/
+.vscode/
+
+# Testing
+coverage/
+.coverage
+htmlcov/
+tests/
+
+# Build
+dist/
+build/
+*.egg-info/
+
+# Data and models (these will be mounted as volumes)
+data/
+models/
+
+# Docker
+Dockerfile
+.dockerignore
