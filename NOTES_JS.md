@@ -74,3 +74,42 @@ Your current `package.json` files show good version management. Conflicts are un
 - Use Node version management
 
 This approach is more lightweight than Python environments while providing equivalent isolation for Node.js projects.
+
+---------------------------------------------------------------
+
+<!-- Claude 3.5 Sonnet -->
+
+### A note on `shadcn` (or Radix UI)
+
+`shadcn` isn't a package - it's a collection of reusable components that use Radix UI (`@radix-ui/react-*`) under the hood. The `components.json` file configures these components, and the actual dependencies are the Radix UI packages that provide the underlying functionality.
+
+### `npm` vs `npx`
+
+Here's the key distinction:
+
+`npm` (Node Package Manager) is used for installing packages and managing project dependencies. It installs packages either globally on your system or locally in your project's `node_modules` folder.
+
+Example:
+```bash
+npm install react    # Installs react locally
+npm install -g typescript    # Installs typescript globally
+```
+
+`npx` (Node Package Execute) is used to execute packages without installing them permanently. It's particularly useful for:
+1. Running one-off commands
+2. Executing packages that you need just once
+3. Ensuring you're always running the latest version of a package
+
+Example:
+```bash
+npx create-react-app my-app    # Creates a React app without globally installing create-react-app
+npx shadcn-ui@latest add button    # Adds a shadcn button component without installing shadcn globally
+```
+
+A good way to remember: Use `npm` when you want to install packages, use `npx` when you want to execute packages (especially one-time tools or generators).
+
+### `devDependencies`
+
+The -D flag installs a package as a devDependency, meaning it's only needed during development, not in production. @types/node provides TypeScript type definitions for Node.js APIs.
+To add it to package.json, modify the devDependencies section.
+
